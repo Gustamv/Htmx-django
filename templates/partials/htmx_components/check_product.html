@@ -1,0 +1,14 @@
+<!--18- importing the folder templates, partials and the this file -->
+<!--This was just an example that changes the <div id="product-out"> because that's what the check_product function does -->
+<!--<p class="badge bg-danger">Produto bem gostoso!</p> -->
+
+<!--19- use django tags to make it dynamic -->
+{% if products %}
+<p class="badge bg-danger">Produto ja cadastrado!</p>
+
+{% else %}
+<p class="badge bg-success">Produto disponivel para cadastro</p>
+
+{% endif %}
+
+

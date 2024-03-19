@@ -1,0 +1,52 @@
+    <!--7- copy this html with bootstrap page -->
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <title>List Products</title>
+        <!--8- importing HTMX -->
+        <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
+    </head>
+  <body>
+    <div class="container">
+        <!--9- creating this div for inputing product name and price -->
+        <div class="row">
+            <div class="col-md">
+                <form>
+                    {% csrf_token %}
+                    <label for="">Product Name</label>
+                    <!--13- adding hx-get #16- adding hx-trigger and hx-target (what will do and to where it will go) -->
+                    <!--What happens is when you press a key, its made a request for the url and the input data are sent by the method GET, when received, the name is printed in the terminal and returning the name teste, as the function did initially -->
+                    <input type="text" name="product" class="form-control" hx-get="{% url 'check_product' %}" hx-trigger="keyup" hx-target="#product-out">
+                    <div id="product-out">
+    
+                    </div>
+                    <br>
+                    <label for="">Product Price</label>
+                    <input type="number" name="price" class="form-control">
+                    <br>
+                    <!--22- adding some htmx attributes to the button -->
+                    <button class="btn btn-success"
+                    hx-post=" {% url 'save_product' %}"
+                    hx-trigger="click"
+                    hx-target="#list_products"
+                    >Save</button>
+                </form>
+            </div>
+        </div>
+        <div id="list_products">
+            <!--25- create this to include a html file of your choice -->
+            {% include "partials/htmx_components/list_all_products.html" %}
+        </div>
+    </div>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  </body>
+</html>

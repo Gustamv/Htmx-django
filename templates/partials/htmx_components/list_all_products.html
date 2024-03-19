@@ -1,0 +1,13 @@
+<!--23- create this file -->
+<!--26- create the condition -->
+
+{% if produtcs %}
+    <ul class="list-group">
+        {% for product in products %}
+            <li class="list-group-item">{{product.name}}</li>
+        {% endfor %}
+    </ul>
+
+{% else %}
+    <h4>Nenhum produto cadastrado</h4>
+{% endif %}
